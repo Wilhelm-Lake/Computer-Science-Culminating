@@ -13,7 +13,7 @@ import processing.core.PApplet;
     
     
 public class MySketch extends PApplet {
-int stage= 0;
+int stage=0;
     public void settings() {
         size(1600, 1000);
     }
@@ -23,20 +23,43 @@ int stage= 0;
     }
 
     public void draw() {
+        background(97, 64, 81);
         fill(0, 0, 0);
-        rect(0,0,300,1000);
-        rect(1300,0,300,1000);
-        if (stage==0){
-            fill(0,0,0);
-            rect(0,0,1600,1000);
-            fill(255,0 ,0);
+        rect(0, 0, 300, 1000);
+        rect(1300, 0, 300, 1000);
+        if (stage == 0) {
+            fill(0, 0, 0);
+            rect(0, 0, 1600, 1000);
+            fill(255, 0, 0);
             textSize(50);
             this.text("Journey To The West", 550, 300);
             textSize(30);
-            this.text("Fight Against Buddha",650, 400);
-            this.text("Press Anything to Begin",650, 600);
+            this.text("Fight Against Buddha", 650, 400);
+            this.text("Press Anything to Begin", 650, 600);
+
+            if (keyPressed) {
+                stage += 1;
+            }
+
+        } else if (stage == 1) {
+            fill(0, 0, 0);
+            rect(0, 0, 1600, 1000);
+            fill(255, 0, 0);
+            textSize(50);
+            this.text("You are the Monkey King", 550, 300);
+            textSize(30);
+            this.text("The Buddha disrespects you, so you must beat his bald ass up", 500, 400);
+            this.text("Use arrowkeys to move, z to shoot", 600, 600);
+
+            if (keyPressed) {
+                stage += 1;
+            }
+        } else if (stage == 2) {
+
         }
     }
+
 }
+
     
 
