@@ -13,16 +13,28 @@ import processing.core.PApplet;
     
     
 public class MySketch extends PApplet {
-int stage=0;
+    private buddha buddha;
+int stage=2;
+//change back to 0 for main menue
+
+public void keyPressed(){
+    if (stage<2){
+        stage+=1;
+    }
+}
+
     public void settings() {
         size(1600, 1000);
     }
 
     public void setup() {
         background(97, 64, 81);
+        buddha=new buddha(this, 800, 500, 40, 100);
+        
     }
 
     public void draw() {
+        //reminder that our effective screen is 1000 tall and wide
         background(97, 64, 81);
         fill(0, 0, 0);
         rect(0, 0, 300, 1000);
@@ -37,9 +49,6 @@ int stage=0;
             this.text("Fight Against Buddha", 650, 400);
             this.text("Press Anything to Begin", 650, 600);
 
-            if (keyPressed) {
-                stage += 1;
-            }
 
         } else if (stage == 1) {
             fill(0, 0, 0);
@@ -51,10 +60,8 @@ int stage=0;
             this.text("The Buddha disrespects you, so you must beat his bald ass up", 500, 400);
             this.text("Use arrowkeys to move, z to shoot", 600, 600);
 
-            if (keyPressed) {
-                stage += 1;
-            }
         } else if (stage == 2) {
+            buddha.drawBuddha();
 
         }
     }
