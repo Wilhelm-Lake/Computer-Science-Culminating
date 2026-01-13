@@ -28,6 +28,31 @@ public class player {
         this.x=x;
         this.y=y;
     }
+    
+    public void drawPlayer() {
+        app.fill(159, 129, 112);
+        
+        app.rect(x, y, width, height);
+    }
+    public void speedShift(boolean slow){
+        if (slow){
+            speed=3;
+    }
+        else {
+            speed=6;
+        }
+    }
+    
+    public void movePlayer(int x, int y){
+        this.x+=x*speed;
+        this.y-=y*speed;
+    }
+    public int playerX(){
+        return this.x;
+    }
+    public int playerY(){
+        return this.y;
+    }
 }
 
 
