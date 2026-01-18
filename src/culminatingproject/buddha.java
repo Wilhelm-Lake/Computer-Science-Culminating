@@ -19,6 +19,7 @@ public class buddha {
     private PApplet app;
     private int width;
     private int height;
+    private projectile[]bullets=new projectile[100];
 
     //0 for normal, negative for glowingm positive for hurt
 
@@ -28,6 +29,9 @@ public class buddha {
         this.width = width;
         this.height = height;
         this.app = p;
+        for(int i=0; i<bullets.length;i++){
+            bullets[i]=new bullet(0,0,1,3);
+        }
 
     }
 
@@ -37,8 +41,15 @@ public class buddha {
         app.rect(x, y, width, height);
     }
 
-    public void shootBuddha() {
-
+    public void shootBuddha(int x,int y,double angle) {
+        for(int i=0; i<bullets.length;i++){
+            if(bullets[i].active()==true){
+                bullets[i].changeX(x);
+                bullets[i].changeY(y);
+                bullets[i].changeDirect(angle);
+                return;
+            }
+        }
     }
 
     public void moveBuddha(int dx, int dy) {

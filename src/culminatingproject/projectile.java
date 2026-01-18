@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package culminatingproject;
 
-/**
- *
- * @author 343012951
- */
+
 public class projectile {
-    private int x, y, direct, speed;
+    public int x, y, speed;
+    private double direct;
     private boolean active = false;
     
-    public projectile(int x, int y, int direct, int speed){
+    public projectile(int x, int y, double direct, int speed){
         this.x=x;
         this.y=y;
         this.direct=direct;
@@ -26,5 +21,19 @@ public class projectile {
     
     public void toggle(){
         this.active = !this.active;
+    }
+    
+    public boolean active(){
+        return active;
+    }
+        public void changeX(int x){
+        this.x=x;
+    }
+    public void changeY(int y){
+        this.y=y;
+    }
+    
+    public void changeDirect(double direct){
+        this.direct= Math.tan(direct);
     }
 }

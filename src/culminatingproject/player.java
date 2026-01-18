@@ -1,14 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package culminatingproject;
 import processing.core.PApplet;
 
-/**
- *
- * @author 343012951
- */
+
 public class player {
     private int x;
     private int y;
@@ -19,6 +13,8 @@ public class player {
     private PApplet app;
     private int width;
     private int height;
+    private projectile[]bullets=new projectile[100];
+    private int shootDelay=0;
     
     
     public player(PApplet p, int width,int height, int x, int y){
@@ -27,12 +23,22 @@ public class player {
         this.height=height;
         this.x=x;
         this.y=y;
+        for(int i=0; i<bullets.length;i++){
+            bullets[i]=new playerBullet(0,0,1,5,app);
+            
+        }
     }
     
     public void drawPlayer() {
         app.fill(159, 129, 112);
         
         app.rect(x, y, width, height);
+        for(int i=0; i<bullets.length;i++){
+            if (bullets[i].active() == true) {
+                playerBullet b = (playerBullet) bullets[i];
+                   b.drawPlayerBullet();
+                }
+        }
     }
     public void speedShift(boolean slow){
         if (slow){
@@ -53,6 +59,23 @@ public class player {
     public int playerY(){
         return this.y;
     }
-}
 
+    public void shootPlayer() {
+        if (shootDelay == 30) {
+            for (int i = 0; i < bullets.length; i++) {
+                if (bullets[i].active() == true) {
+                    bullets[i].changeX(this.x);
+                    bullets[i].changeY(this.y);
+                    bullets[i].toggle();
+                    return;
+                }
+            }
+        } else {
+            shootDelay += 1;
+        }
+    }
+    
+    
+
+}
 

@@ -14,7 +14,7 @@ public class MySketch extends PApplet {
     private buddha buddha;
     private player player;
     int stage = 2;
-    boolean up, down, left, right, slow;
+    boolean up, down, left, right, slow, shoot;
 //change back to 0 for main menue
 
     public void keyPressed() {
@@ -38,6 +38,9 @@ public class MySketch extends PApplet {
             if (key == 'x' || key == 'X') {
                 slow=true;
             }
+            if (key == 'z' || key == 'Z') {
+                shoot=true;
+            }
         }
 }
 
@@ -57,6 +60,9 @@ public class MySketch extends PApplet {
         if (keyCode == RIGHT) {
             right = false;
         }
+        if (key == 'z' || key == 'Z') {
+                shoot=false;
+            }
     }
 
     public void settings() {
@@ -118,6 +124,9 @@ public class MySketch extends PApplet {
             }
             if (right && player.playerX() < 1280) {
                 dx += 1;
+            }
+            if(shoot){
+                player.shootPlayer();
             }
             player.speedShift(slow);
             player.movePlayer(dx, dy);
