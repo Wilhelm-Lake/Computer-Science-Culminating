@@ -22,6 +22,9 @@ public class projectile {
     public void toggle(){
         this.active = !this.active;
     }
+    public void unActive(){
+        this.active = false;
+    }
     
     public boolean active(){
         return active;
@@ -34,6 +37,6 @@ public class projectile {
     }
     
     public void changeDirect(double direct){
-        this.direct= Math.tan(direct);
+        this.direct= direct;
     }
 }

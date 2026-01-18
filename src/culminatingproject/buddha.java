@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package culminatingproject;
 
 import processing.core.PApplet;
 
-/**
- *
- * @author 343012951
- */
 public class buddha {
 
     private int x;
@@ -57,12 +50,13 @@ public class buddha {
         }
     }
     
-    public void ringShoot(int rotation, int numBullets){
+    public void ringShoot(double rotation, int numBullets){
         rotation = rotation % 360;
-        double angleStep = 360/numBullets;
+        double angleStep = 360.0/numBullets;
         for (int i=0;i<numBullets;i++){
-            double angle =i*angleStep+rotation;
+            double angle =(i*angleStep)+rotation;
             shootBuddha(angle);
+
         }
         
     }

@@ -15,7 +15,7 @@ public class playerBullet extends projectile{
     public void drawPlayerBullet(){
         this.y-=this.speed;
         if(this.y<0){
-            this.toggle();
+            this.unActive();
         }
         this.app.fill(255,255,255);
         this.app.ellipse(this.x, this.y, 10, 50);

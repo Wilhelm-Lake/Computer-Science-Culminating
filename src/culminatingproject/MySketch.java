@@ -110,19 +110,7 @@ public class MySketch extends PApplet {
             this.text("The Buddha disrespects you, so you must beat his bald ass up", 500, 400);
             this.text("Use arrowkeys to move, z to shoot", 600, 600);
 
-        } else if (stage >= 2) {
-            if (counter1 >= 360) {
-                counter1 = 0;
-            }
-
-            
-            if (counter2 >= 5) {
-            counter2 = 0;
-
-                buddha.shootBuddha(counter1);
-            }
-            counter1 += 1;
-            counter2 += 1;
+        }if (stage >= 2) {
 
 
             int dx = 0;
@@ -146,6 +134,18 @@ public class MySketch extends PApplet {
             player.movePlayer(dx, dy);
             player.drawPlayer();
             buddha.drawBuddha();
+        }
+        
+        if(stage==2){
+            counter1+=1;
+            if(counter1==150){
+                buddha.ringShoot(0, 25);
+                
+            }
+            if(counter1==300){
+                buddha.ringShoot(0, 50);
+                counter1=0;
+            }
         }
     }
 
