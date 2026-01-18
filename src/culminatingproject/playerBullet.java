@@ -18,7 +18,7 @@ public class playerBullet extends projectile{
             this.toggle();
         }
         this.app.fill(255,255,255);
-        this.app.ellipse(this.x, this.y, 5, 5);
+        this.app.ellipse(this.x, this.y, 10, 50);
     }
     
 }

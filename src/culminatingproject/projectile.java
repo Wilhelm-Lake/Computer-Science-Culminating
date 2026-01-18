@@ -4,7 +4,7 @@ package culminatingproject;
 
 public class projectile {
     public int x, y, speed;
-    private double direct;
+    public double direct;
     private boolean active = false;
     
     public projectile(int x, int y, double direct, int speed){

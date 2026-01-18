@@ -24,7 +24,7 @@ public class player {
         this.x=x;
         this.y=y;
         for(int i=0; i<bullets.length;i++){
-            bullets[i]=new playerBullet(0,0,1,5,app);
+            bullets[i]=new playerBullet(0,0,1,15,app);
             
         }
     }
@@ -61,10 +61,11 @@ public class player {
     }
 
     public void shootPlayer() {
-        if (shootDelay == 30) {
+        if (shootDelay == 10) {
+            shootDelay=0;
             for (int i = 0; i < bullets.length; i++) {
-                if (bullets[i].active() == true) {
-                    bullets[i].changeX(this.x);
+                if (bullets[i].active() == false) {
+                    bullets[i].changeX(this.x+10);
                     bullets[i].changeY(this.y);
                     bullets[i].toggle();
                     return;

@@ -15,6 +15,8 @@ public class MySketch extends PApplet {
     private player player;
     int stage = 2;
     boolean up, down, left, right, slow, shoot;
+    private int counter1=0;
+    private int counter2=0;
 //change back to 0 for main menue
 
     public void keyPressed() {
@@ -71,7 +73,7 @@ public class MySketch extends PApplet {
 
     public void setup() {
         background(97, 64, 81);
-        buddha = new buddha(this, 800, 300, 40, 100);
+        buddha = new buddha(this, 800, 300);
         player = new player(this, 20, 50, 800, 700);
 
     }
@@ -108,9 +110,21 @@ public class MySketch extends PApplet {
             this.text("The Buddha disrespects you, so you must beat his bald ass up", 500, 400);
             this.text("Use arrowkeys to move, z to shoot", 600, 600);
 
-        } else if (stage>=2) {
-            buddha.drawBuddha();
-            player.drawPlayer();
+        } else if (stage >= 2) {
+            if (counter1 >= 360) {
+                counter1 = 0;
+            }
+
+            
+            if (counter2 >= 5) {
+            counter2 = 0;
+
+                buddha.shootBuddha(counter1);
+            }
+            counter1 += 1;
+            counter2 += 1;
+
+
             int dx = 0;
             int dy = 0;
             if (up && player.playerY() > -1) {
@@ -130,6 +144,8 @@ public class MySketch extends PApplet {
             }
             player.speedShift(slow);
             player.movePlayer(dx, dy);
+            player.drawPlayer();
+            buddha.drawBuddha();
         }
     }
 
