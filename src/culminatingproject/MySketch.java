@@ -21,29 +21,29 @@ public class MySketch extends PApplet {
     private buddha buddha;
     private player player;
     int stage = 0;
-    boolean up, down, left, right, slow, shoot;
-    private int counter1 = 0;
-    private int counter2 = 0;
-    private int counter3 = 0;
-    private int counter4 = 0;
-    private int counter5 = 0;
-    private int counter6 = 0;
-    private int lives;
+    private static boolean up, down, left, right, slow, shoot;
+    private static int counter1 = 0;
+    private static int counter2 = 0;
+    private static int counter3 = 0;
+    private static int counter4 = 0;
+    private static int counter5 = 0;
+    private static int counter6 = 0;
+    private static int lives;
     PImage p, m;
-    boolean moveRight = true;
-    private int substage = 0;
-    private int subsubstage = 0;
+    private static boolean moveRight = true;
+    private static int substage = 0;
+    private static int subsubstage = 0;
     Random rand = new Random();
-    private int timer;
-    private int bestTime = 500;
-    private int bestLives = 0;
+    private static int timer;
+    private static int bestTime = 500;
+    private static int bestLives = 0;
     File scoreFile = new File("score.txt");
 
 //turns various booleans on if buttons are pressed
     //also includes the stuff that progresses stage with just a button press at the text screens
     @Override
     public void keyPressed() {
-        if (stage < 2 || stage == 6) {
+        if (stage < 2) {
             stage += 1;
         }
         if (stage >= 2) {
@@ -72,6 +72,9 @@ public class MySketch extends PApplet {
     //turns the booleans off if the buttons are released
     @Override
     public void keyReleased() {
+        if (stage ==6) {
+            stage += 1;
+        }
         if (key == 'x' || key == 'X') {
             slow = false;
         }
@@ -282,9 +285,6 @@ public class MySketch extends PApplet {
             if (buddha.buddhaY() < 500) {
                 buddha.moveBuddha(0, -5);
             }
-            if (Math.abs(buddha.buddhaX() - 800) <= 5 && Math.abs(buddha.buddhaY() - 500) <= 5) {
-                buddha.moveBuddha(800 - buddha.buddhaX(), 500 - buddha.buddhaY());
-            }
 
             if (buddha.buddhaX() == 500 || buddha.buddhaY() == 500) {
                 counter5 += 1;
@@ -326,6 +326,7 @@ public class MySketch extends PApplet {
             int time = timer % 60;
             this.text("You took " + time + " secounds to defeat Buddha", 500, 400);
             this.text("You have " + lives + " lives left", 600, 600);
+            this.text("You have missed " + playerBullet.missed + " bullets", 600, 800);
 
         }
         //exits after recording score to file
@@ -357,7 +358,7 @@ public class MySketch extends PApplet {
             if (buddha.buddhaHealth() == 500) {
                 stage += 1;
             }
-            if (buddha.buddhaHealth() == 0) {
+            if (buddha.buddhaHealth() <= 0) {
                 stage += 1;
             }
 

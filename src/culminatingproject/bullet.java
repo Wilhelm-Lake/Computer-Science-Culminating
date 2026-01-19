@@ -6,6 +6,7 @@ import processing.core.PApplet;
 public class bullet extends projectile {
 
     private PApplet p;
+    
 
     /*
     @param x

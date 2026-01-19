@@ -5,6 +5,7 @@ import processing.core.PApplet;
 public class playerBullet extends projectile {
 
     private PApplet app;
+    public static int missed=0;
 
     /*
     @param x
@@ -24,7 +25,7 @@ public class playerBullet extends projectile {
     public void drawPlayerBullet() {
         this.y -= this.speed;
         if (this.collide()) {
-
+            missed+=0;
             this.unActive();
         }
         this.app.fill(255, 255, 255);
