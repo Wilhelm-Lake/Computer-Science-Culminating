@@ -12,10 +12,12 @@ public class playerBullet extends projectile {
         super(x, y, direct);
         this.app = p;
     }
+    
 
     public void drawPlayerBullet() {
         this.y -= this.speed;
         if (this.collide()) {
+
             this.unActive();
         }
         this.app.fill(255, 255, 255);
@@ -52,9 +54,5 @@ public class playerBullet extends projectile {
     }
     
     
-        @Override
-    public void changeDirect(double direct){
-        this.direct= this.direct+=180;
-    }
 
 }

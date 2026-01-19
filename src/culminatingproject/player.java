@@ -12,6 +12,7 @@ public class player {
     private PApplet app;
     private int width;
     private int height;
+    private int lives =3;
     private projectile[]bullets=new projectile[100];
     private int shootDelay=0;
     
@@ -78,6 +79,15 @@ public class player {
         } else {
             shootDelay += 1;
         }
+    }
+    
+    public void damage(){
+ 
+        lives-=1;
+    }
+    
+    public int lives(){
+        return this.lives;
     }
     
     

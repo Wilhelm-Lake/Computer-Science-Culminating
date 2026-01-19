@@ -8,7 +8,7 @@ public class bullet extends projectile{
         super(x,y,direct,speed);
         this.p=p;
     }
-    
+    @Override
     public void drawBullet(){
         this.x+=Math.cos(this.direct)*this.speed;
         this.y-=Math.sin(this.direct)*this.speed;
@@ -21,6 +21,28 @@ public class bullet extends projectile{
         this.p.ellipse(this.x, this.y, 25, 25);
     }
     
+    
+        public boolean collide(player p) {
+       boolean box = false;
+       boolean xCross=false;
+       boolean yCross=false;
+       int x=p.playerX()+10;
+       int y =p.playerY()+25;
+       int ourX=this.x+15;
+       int ourY=this.y+15;
+       if(Math.abs(ourX - x) <= 16){
+           xCross=true;
+       }
+       if(Math.abs(ourY - y) <= 50){
+           yCross=true;
+       }
+       if(yCross&&xCross){
+           box=true;
+           this.toggle();
+       }
+       
+       return box;
+    }
     
     
 }

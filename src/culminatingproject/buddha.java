@@ -8,8 +8,7 @@ public class buddha {
 
     private int x;
     private int y;
-    private int movement = 0;
-    private int health = 300;
+    private int health = 2000;
     private PApplet app;
     private projectile[]bullets=new projectile[300];
     private PImage image;
@@ -29,7 +28,7 @@ public class buddha {
     }
 
     
-    public void drawBuddha() {
+    public void drawBuddha(player p) {
         app.fill(255, 215, 0);
         if (this.damage==true){
             app.fill(204,153,102);
@@ -37,8 +36,14 @@ public class buddha {
         app.ellipse(this.x, this.y, 100, 100);
         app.image(image,x-50,y-50);
         for(int i=0; i<bullets.length;i++){
+            
+            bullet b = (bullet) bullets[i];
+            
+            if (b.collide(p)) {
+                p.damage();
+                
+            }
             if (bullets[i].active() == true) {
-                bullet b = (bullet) bullets[i];
                    b.drawBullet();
                 }
         }
@@ -90,6 +95,11 @@ public class buddha {
     
     public int buddhaHealth(){
         return this.health;
+    }
+    
+    public void buddhaTeleport(int x, int y){
+        this.x=x;
+        this.y=y;
     }
     
 
