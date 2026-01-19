@@ -7,6 +7,13 @@ public class projectile {
     public double direct;
     private boolean active = false;
     
+    public projectile(int x, int y, double direct){
+        this.x=x;
+        this.y=y;
+        this.direct=direct;
+        this.speed=15;
+    }
+    
     public projectile(int x, int y, double direct, int speed){
         this.x=x;
         this.y=y;
@@ -14,10 +21,6 @@ public class projectile {
         this.speed=speed;
     }
     
-    public void move(){
-        this.x+=this.speed;
-        this.y-=this.speed*this.direct;
-    }
     
     public void toggle(){
         this.active = !this.active;
@@ -29,7 +32,8 @@ public class projectile {
     public boolean active(){
         return active;
     }
-        public void changeX(int x){
+    
+    public void changeX(int x){
         this.x=x;
     }
     public void changeY(int y){

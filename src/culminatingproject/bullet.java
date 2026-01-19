@@ -21,4 +21,6 @@ public class bullet extends projectile{
         this.p.ellipse(this.x, this.y, 25, 25);
     }
     
+    
+    
 }

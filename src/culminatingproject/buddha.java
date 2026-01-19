@@ -2,47 +2,55 @@
 package culminatingproject;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class buddha {
 
     private int x;
     private int y;
     private int movement = 0;
-    private int health = 1500;
+    private int health = 300;
     private PApplet app;
-    private int width=40;
-    private int height=100;
     private projectile[]bullets=new projectile[300];
+    private PImage image;
+    private boolean damage=false;
 
     //0 for normal, negative for glowingm positive for hurt
 
-    public buddha(PApplet p, int x, int y) {
+    public buddha(PApplet p, int x, int y,String imagePath) {
         this.x = x;
         this.y = y;
         this.app = p;
+        this.image=app.loadImage(imagePath);
         for(int i=0; i<bullets.length;i++){
             bullets[i]=new bullet(0,0,1,5,app);
         }
-
+        this.image.resize(100, 100);
     }
 
+    
     public void drawBuddha() {
         app.fill(255, 215, 0);
-        app.rect(x, y, width, height);
+        if (this.damage==true){
+            app.fill(204,153,102);
+        }
+        app.ellipse(this.x, this.y, 100, 100);
+        app.image(image,x-50,y-50);
         for(int i=0; i<bullets.length;i++){
             if (bullets[i].active() == true) {
                 bullet b = (bullet) bullets[i];
                    b.drawBullet();
                 }
         }
+        this.damage=false;
     }
 
     public void shootBuddha(double angle) {
         for(int i=0; i<bullets.length;i++){
             if(bullets[i].active()==false){
                 double radian = Math.toRadians(angle);
-                bullets[i].changeX(this.x+this.width/2);
-                bullets[i].changeY(this.y+this.height/2);
+                bullets[i].changeX(this.x);
+                bullets[i].changeY(this.y);
                 bullets[i].changeDirect(radian);
                 bullets[i].toggle();
                 return;
@@ -73,5 +81,16 @@ public class buddha {
     public int buddhaY() {
         return this.y;
     }
+
+    
+    public void damage(int damage){
+        this.health-=damage;
+        this.damage=true;
+    }
+    
+    public int buddhaHealth(){
+        return this.health;
+    }
+    
 
 }

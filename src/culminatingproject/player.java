@@ -7,7 +7,6 @@ public class player {
     private int x;
     private int y;
     private int speed = 5;
-    private int lives = 3;
     private int p=0;
     private int b =1;
     private PApplet app;
@@ -24,28 +23,33 @@ public class player {
         this.x=x;
         this.y=y;
         for(int i=0; i<bullets.length;i++){
-            bullets[i]=new playerBullet(0,0,1,15,app);
+            bullets[i]=new playerBullet(0,0,1,app);
             
         }
     }
     
-    public void drawPlayer() {
+    public void drawPlayer(buddha t) {
         app.fill(159, 129, 112);
         
         app.rect(x, y, width, height);
-        for(int i=0; i<bullets.length;i++){
+        for (int i = 0; i < bullets.length; i++) {
+            playerBullet b = (playerBullet) bullets[i];
+            if (b.collide(t)) {
+                t.damage(1);
+                
+            }
+            
             if (bullets[i].active() == true) {
-                playerBullet b = (playerBullet) bullets[i];
-                   b.drawPlayerBullet();
-                }
+                b.drawPlayerBullet();
+            }
         }
     }
-    public void speedShift(boolean slow){
-        if (slow){
-            speed=3;
-    }
-        else {
-            speed=6;
+
+    public void speedShift(boolean slow) {
+        if (slow) {
+            speed = 3;
+        } else {
+            speed = 6;
         }
     }
     
