@@ -265,20 +265,22 @@ public class MySketch extends PApplet {
             if(buddha.buddhaY()<500){
                 buddha.moveBuddha(0,-5);
             }
-            
-            
-            if(buddha.buddhaX()==500||buddha.buddhaY()==500){
-                counter5+=1;
-                counter6+=1;
-                if(counter5==15){
+            if (Math.abs(buddha.buddhaX() - 800) <= 5 && Math.abs(buddha.buddhaY() - 500) <= 5) {
+                buddha.moveBuddha(800 - buddha.buddhaX(), 500 - buddha.buddhaY());
+            }
+
+            if (buddha.buddhaX() == 500 || buddha.buddhaY() == 500) {
+                counter5 += 1;
+                counter6 += 1;
+                if (counter5 == 15) {
                     buddha.shootBuddha(counter6);
-                    buddha.shootBuddha(counter6+90);
-                    buddha.shootBuddha(counter6+180);
-                    buddha.shootBuddha(counter6+270);
+                    buddha.shootBuddha(counter6 + 90);
+                    buddha.shootBuddha(counter6 + 180);
+                    buddha.shootBuddha(counter6 + 270);
                 }
-                if(counter5==30){
+                if (counter5 == 30) {
                     buddha.shootBuddha(counter6);
-                    buddha.shootBuddha(counter6+90);
+                    buddha.shootBuddha(counter6 + 90);
                     buddha.shootBuddha(counter6+180);
                     buddha.shootBuddha(counter6+270);
                     buddha.ringShoot(counter6, 15);
@@ -306,8 +308,8 @@ public class MySketch extends PApplet {
             this.text("Victory", 550, 300);
             textSize(30);
             int time=timer%60;
-            this.text("You took"+time+"secounds to defeat Buddha", 500, 400);
-            this.text("You have"+lives+"lives left", 600, 600);
+            this.text("You took "+time+" secounds to defeat Buddha", 500, 400);
+            this.text("You have "+lives+" lives left", 600, 600);
 
         }
         if(stage==7){
@@ -353,13 +355,16 @@ public class MySketch extends PApplet {
             }
             
             m.resize(100, 100);
-            if (stage >0) {
+            if(lives==0){
+                exit();
+            }
+            if (lives >1) {
                 image(m, 1400, 500);
             }
-            if (stage >1) {
+            if (lives >2) {
                 image(m, 1450, 500);
             }
-            if (stage >2) {
+            if (lives >3) {
                 image(m, 1500, 500);
             }
 

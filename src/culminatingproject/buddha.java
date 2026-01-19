@@ -41,7 +41,9 @@ public class buddha {
             
             if (b.collide(p)) {
                 p.damage();
-                
+                bullets[i].unActive();
+                bullets[i].changeX(-100);
+                bullets[i].changeY(-100);
             }
             if (bullets[i].active() == true) {
                    b.drawBullet();

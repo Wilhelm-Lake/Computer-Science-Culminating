@@ -47,7 +47,7 @@ public class playerBullet extends projectile {
        }
        if(yCross&&xCross){
            box=true;
-           this.toggle();
+           this.unActive();
        }
        
        return box;

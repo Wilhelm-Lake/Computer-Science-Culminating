@@ -12,7 +12,7 @@ public class player {
     private PApplet app;
     private int width;
     private int height;
-    private int lives =3;
+    private int lives =4;
     private projectile[]bullets=new projectile[100];
     private int shootDelay=0;
     
@@ -37,7 +37,6 @@ public class player {
             playerBullet b = (playerBullet) bullets[i];
             if (b.collide(t)) {
                 t.damage(1);
-                
             }
             
             if (bullets[i].active() == true) {
